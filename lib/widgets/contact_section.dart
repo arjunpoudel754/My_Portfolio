@@ -13,8 +13,9 @@ class ContactSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController name = TextEditingController();
-    final TextEditingController email = TextEditingController();
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController subjectController = TextEditingController();
+    final TextEditingController messageController = TextEditingController();
 
     return Container(
                 padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
@@ -40,10 +41,11 @@ class ContactSection extends StatelessWidget {
                       ),
                       child: LayoutBuilder(builder: ((context, constraints) {
                         if (constraints.maxWidth >= kMinDesktopWidth) {
-                          return nameEmailFieldDesktop(name, email);
+                          return nameEmailFieldDesktop(nameController, subjectController);
                         }
+
                         else{
-                        return nameEmailFieldMobile(name, email);
+                        return nameEmailFieldMobile(nameController, subjectController);
                         }
                       }))
                     ),
@@ -55,6 +57,7 @@ class ContactSection extends StatelessWidget {
                         maxWidth: 700,
                       ),
                       child: CustomTextfield(
+                        controller: messageController,
                         hintText: "Your Message",
                         maxLines: 10,
                       ),
@@ -69,15 +72,26 @@ class ContactSection extends StatelessWidget {
                       child: SizedBox(
                         width: double.maxFinite,
                         child: ElevatedButton(
-                          onPressed: (){
-
-                          }, 
-                          style: ElevatedButton.styleFrom(backgroundColor: CustomColor.yellowPrimary,),
-                          child: const Text("Get in Touch",
-                          style: TextStyle(
-                            color: CustomColor.whitePrimary,
-                          ),))),
-                    ),
+                            onPressed: () {
+                              composeEmail(
+                                context,
+                                nameController,
+                                subjectController,
+                                messageController,
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: CustomColor.yellowPrimary,
+                            ),
+                            child: const Text(
+                              "Get in Touch",
+                              style: TextStyle(
+                                color: CustomColor.whitePrimary,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     const SizedBox(height: 30,),
                     ConstrainedBox(
                       constraints: BoxConstraints(
@@ -130,40 +144,40 @@ class ContactSection extends StatelessWidget {
               );
   }
 
-  Row nameEmailFieldDesktop(TextEditingController name, TextEditingController email){
+  Row nameEmailFieldDesktop(TextEditingController nameController, TextEditingController subjectController){
     return Row(
                         children: [
                           Flexible(
                             child: CustomTextfield(
-                              controller: name ,
+                              controller: nameController ,
                               hintText: "Your Name",
                             )
                           ),
                           const SizedBox(width: 15,),
                           Flexible(
                             child: CustomTextfield(
-                              controller: email,
-                              hintText: "Your Email",
+                              controller: subjectController,
+                              hintText: "Enter Subject",
                             )
                           ),
                         ],
                       );
   }
 
-  Column nameEmailFieldMobile(TextEditingController name, TextEditingController email) {
+  Column nameEmailFieldMobile(TextEditingController nameController, TextEditingController subjectController) {
     return Column(
                         children: [
                           Flexible(
                             child: CustomTextfield(
-                              controller: name,
+                              controller: nameController,
                               hintText: "Your Name",
                             )
                           ),
                           const SizedBox(height: 15.0,),
                           Flexible(
                             child: CustomTextfield(
-                              controller: email,
-                              hintText: "Your Email",
+                              controller: subjectController,
+                              hintText: "Your Subject",
                             )
                           ),
                         ],
