@@ -14,6 +14,9 @@ class ProjectSection extends StatelessWidget {
     return Container(
                 width: screenWidth,
                 padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
+                decoration: BoxDecoration(
+                  // color: CustomColor.bgLight1,
+                ),
                 child: Column(
                   children: [
                     //work Projects titles

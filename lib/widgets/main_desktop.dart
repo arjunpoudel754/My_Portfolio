@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio2/constants/colors.dart';
+import 'package:my_portfolio2/constants/intro.dart';
 
 class MainDesktop extends StatelessWidget {
-  const MainDesktop({super.key});
+  const MainDesktop({
+    super.key,
+    required this.onGetInTouch,
+  });
+
+  final VoidCallback onGetInTouch;
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +28,7 @@ class MainDesktop extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         // Intro msg
-                        const Text("Hi, \nI'm Soe Myint\nA Flutter Developer",
+                        Text('$greet,\nI am $name\n$role',
                         style: TextStyle(
                           fontSize: 30,
                           height: 1.5,
@@ -35,7 +42,7 @@ class MainDesktop extends StatelessWidget {
                         SizedBox(
                           width: 250,
                           child: ElevatedButton(
-                            onPressed: (){}, 
+                            onPressed: onGetInTouch,
                             style: ElevatedButton.styleFrom(backgroundColor: CustomColor.yellowPrimary,),
                             child:const Text("Get in Touch", style: TextStyle(color: CustomColor.whitePrimary),),
                           ),
@@ -53,4 +60,5 @@ class MainDesktop extends StatelessWidget {
               )
               ;
   }
+
 }

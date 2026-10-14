@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio2/constants/colors.dart';
 import 'package:my_portfolio2/utils/project_utils.dart';
+import 'package:my_portfolio2/utils/url_launcher_utils.dart';
 // import 'dart:js' as js;
-import 'dart:js_interop'; 
-
-@JS('window.open')
-external void openWindow(JSString url, JSString target);
 
 class ProjectCardWidget extends StatelessWidget {
   const ProjectCardWidget({
@@ -18,7 +15,7 @@ class ProjectCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       clipBehavior: Clip.antiAlias,
-      height: 290,
+      height: 350,
       width: 260,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -82,10 +79,7 @@ class ProjectCardWidget extends StatelessWidget {
                       final link = project.githubLink;
 
                       if (link != null && link.isNotEmpty) {
-                        openWindow(
-                          link.toJS,
-                          '_blank'.toJS,
-                        );
+                        openUrl(link);
                       }
                     },
                     child: Image.asset("assets/github.png", width: 20,),
@@ -100,7 +94,7 @@ class ProjectCardWidget extends StatelessWidget {
                       final link = project.webLink;
 
                       if (link != null && link.isNotEmpty) {
-                        openWindow(link.toJS, '_blank'.toJS,);
+                        openUrl(link);
                       }
                     },
                     child: Image.asset("assets/web_icon.png", width: 20,),
@@ -116,7 +110,7 @@ class ProjectCardWidget extends StatelessWidget {
                       final link = project.iosLink;
 
                       if (link != null && link.isNotEmpty) {
-                        openWindow(link.toJS, '_blank'.toJS,);
+                        openUrl(link);
                       }
                     },
                     child: Image.asset("assets/ios_icon.png", width: 20,),
@@ -132,7 +126,7 @@ class ProjectCardWidget extends StatelessWidget {
                       final link = project.androidLink;
 
                       if (link != null && link.isNotEmpty) {
-                        openWindow(link.toJS, '_blank'.toJS,);
+                        openUrl(link);
                       }
                     },
                     child: Image.asset("assets/android_icon.png", width: 20,),

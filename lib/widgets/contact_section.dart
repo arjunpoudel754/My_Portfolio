@@ -2,20 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio2/constants/colors.dart';
 import 'package:my_portfolio2/constants/sizes.dart';
 import 'package:my_portfolio2/constants/sns_link.dart';
+import 'package:my_portfolio2/utils/url_launcher_utils.dart';
 import 'package:my_portfolio2/widgets/custom_textfield.dart';
-import 'dart:js_interop';
 
-@JS('window.open')
-external void openWindow(JSString url, JSString target);
+
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
+
   
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController name = TextEditingController();
+    final TextEditingController email = TextEditingController();
+
     return Container(
                 padding: const EdgeInsets.fromLTRB(25, 20, 25, 60),
-                color: CustomColor.bgLight1,
+                width: double.maxFinite,
+                // color: CustomColor.bgLight1,
                 child: Column(
                   children: [
                     //title
@@ -36,10 +40,10 @@ class ContactSection extends StatelessWidget {
                       ),
                       child: LayoutBuilder(builder: ((context, constraints) {
                         if (constraints.maxWidth >= kMinDesktopWidth) {
-                          return nameEmailFieldDesktop();
+                          return nameEmailFieldDesktop(name, email);
                         }
                         else{
-                        return nameEmailFieldMobile();
+                        return nameEmailFieldMobile(name, email);
                         }
                       }))
                     ),
@@ -65,7 +69,9 @@ class ContactSection extends StatelessWidget {
                       child: SizedBox(
                         width: double.maxFinite,
                         child: ElevatedButton(
-                          onPressed: (){}, 
+                          onPressed: (){
+
+                          }, 
                           style: ElevatedButton.styleFrom(backgroundColor: CustomColor.yellowPrimary,),
                           child: const Text("Get in Touch",
                           style: TextStyle(
@@ -87,35 +93,33 @@ class ContactSection extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: (){
-                              openWindow(SnsLink.github.toJS, '_blank'.toJS);
+                            openUrl(SnsLink.github);
                           },
-                          child: Image.asset("github.png", width: 28,)
+                          child: Image.asset("assets/github.png", width: 28,)
                         ),
                         InkWell(
                           onTap: (){
-                              openWindow(SnsLink.linkedin.toJS, '_blank'.toJS);
-
+                            openUrl(SnsLink.linkedin);
                           },
-                          child: Image.asset("linkedin.png", width: 28,)
+                          child: Image.asset("assets/linkedin.png", width: 28,)
                         ),
                         InkWell(
                           onTap: (){
-                              openWindow(SnsLink.facebook.toJS, '_blank'.toJS);
-
+                            openUrl(SnsLink.facebook);
                           },
-                          child: Image.asset("facebook.png", width: 28,)
+                          child: Image.asset("assets/facebook.png", width: 28,)
+                        ),
+                        InkWell(
+                          onTap: (){  
+                            openUrl(SnsLink.instagram);
+                          },
+                          child: Image.asset("assets/instagram.png", width: 28,)
                         ),
                         InkWell(
                           onTap: (){
-                              openWindow(SnsLink.instagram.toJS, '_blank'.toJS);
+                            openUrl(SnsLink.telegram);
                           },
-                          child: Image.asset("instagram.png", width: 28,)
-                        ),
-                        InkWell(
-                          onTap: (){
-                              openWindow(SnsLink.telegram.toJS, '_blank'.toJS);
-                          },
-                          child: Image.asset("telegram.png", width: 28,)
+                          child: Image.asset("assets/telegram.png", width: 28,)
                         ),
                       ],
                     ),
@@ -126,17 +130,19 @@ class ContactSection extends StatelessWidget {
               );
   }
 
-  Row nameEmailFieldDesktop(){
+  Row nameEmailFieldDesktop(TextEditingController name, TextEditingController email){
     return Row(
                         children: [
                           Flexible(
                             child: CustomTextfield(
+                              controller: name ,
                               hintText: "Your Name",
                             )
                           ),
                           const SizedBox(width: 15,),
                           Flexible(
                             child: CustomTextfield(
+                              controller: email,
                               hintText: "Your Email",
                             )
                           ),
@@ -144,17 +150,19 @@ class ContactSection extends StatelessWidget {
                       );
   }
 
-  Column nameEmailFieldMobile() {
+  Column nameEmailFieldMobile(TextEditingController name, TextEditingController email) {
     return Column(
                         children: [
                           Flexible(
                             child: CustomTextfield(
+                              controller: name,
                               hintText: "Your Name",
                             )
                           ),
                           const SizedBox(height: 15.0,),
                           Flexible(
                             child: CustomTextfield(
+                              controller: email,
                               hintText: "Your Email",
                             )
                           ),

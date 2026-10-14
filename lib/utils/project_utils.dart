@@ -35,20 +35,10 @@ List<ProjectUtils> myProjects = [
     githubLink: 'https://github.com/arjunpoudel754/TicTacToe_Game',
   ),
   ProjectUtils(
-    image: 'assets/projects/OfficeEase.png', 
-    title: 'OfficeEase', 
-    subtitle: 
-    'This is an learning platform for microsoft office tools(word, powerpoint, excel) in four languages.',
-    githubLink: 'https://github.com/Goldenboy243/OfficeEase',
-    webLink: 'https://www.google.com/search?q=Aprils+fools',
-  ),
-  ProjectUtils(
-    image: 'assets/projects/OfficeEase.png', 
-    title: 'OfficeEase', 
-    subtitle: 
-    'This is an learning platform for microsoft office tools(word, powerpoint, excel) in four languages.',
-    githubLink: 'https://github.com/Goldenboy243/OfficeEase',
-    webLink: 'https://www.google.com/search?q=Aprils+fools',
+    image:'assets/projects/BRAIN_OS.png',
+    title: 'Brain OS',
+    subtitle: 'BRAIN_OS is an AI-powered personal knowledge system that stores, understands, and retrieves information from notes, documents, screenshots, images, and audio—like a digital second brain.',
+    githubLink: 'https://github.com/Yukixnya/BRAIN_OS.git',
   ),
   
 ];

@@ -37,7 +37,9 @@ class HeaderDesktop extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: CustomColor.whitePrimary,
-                    ),)),
+                    ),
+                    ),
+                    ),
                  ),
                  
               ],
